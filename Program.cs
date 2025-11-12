@@ -17,9 +17,14 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<MvcMovieContext>();
-    context.Database.Migrate();      // Apply migrations
-    SeedData.Initialize(services);   // Seed database
+
+    // Apply any pending migrations (creates tables if missing)
+    context.Database.Migrate();
+
+    // Seed initial data
+    SeedData.Initialize(services);
 }
+
 
 if (!app.Environment.IsDevelopment())
 {
