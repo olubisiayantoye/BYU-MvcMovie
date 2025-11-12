@@ -3,29 +3,30 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 # Copy csproj and restore dependencies
-COPY *.csproj ./
+COPY *.sln .
+COPY MvcMovie/*.csproj ./MvcMovie/
 RUN dotnet restore
 
-# Copy remaining files and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copy everything else and build
+COPY . .
+WORKDIR /app/MvcMovie
+RUN dotnet publish -c Release -o /app/out
 
 # Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 
 # Copy published app
-COPY --from=build /app/out .
+COPY --from=build /app/out ./
 
 # Create folder for SQLite database
 RUN mkdir -p /app/Data
 
-# Set environment variables
-ENV ASPNETCORE_ENVIRONMENT=Production
+# Set environment variable for SQLite location
 ENV ConnectionStrings__MvcMovieContext="Data Source=/app/Data/MvcMovie.db"
 
-# Expose port 8080 for Render
-EXPOSE 8080
+# Expose port 80
+EXPOSE 80
 
-# Start the app
+# Entry point: apply migrations, seed DB, then run app
 ENTRYPOINT ["dotnet", "MvcMovie.dll"]
