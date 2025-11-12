@@ -1,0 +1,137 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* Applies padding to all form elements */
+
+input,
+select,
+textarea {
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+}
+
+
+ /* Add padding to all input, select, and textarea elements */
+    input.form-control,
+    select.form-control,
+    textarea.form-control {
+        padding: 10px; /* Adjust this value as needed */
+    }
+
+    /* Optional: increase spacing between form groups */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+
+
+
+
+        /* General table styling */
+    table.table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Table header styling */
+    table.table thead {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: #fff;
+    }
+
+    table.table thead th {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    /* Table body styling */
+    table.table tbody td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Zebra striping for rows */
+    table.table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Hover effect for rows */
+    table.table tbody tr:hover {
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Optional: highlight first column */
+    table.table tbody td:first-child {
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Optional: responsive for smaller screens */
+    @media (max-width: 768px) {
+        table.table thead {
+            display: none;
+        }
+
+        table.table, table.table tbody, table.table tr, table.table td {
+            display: block;
+            width: 100%;
+        }
+
+        table.table tr {
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        table.table td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+
+        table.table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 15px;
+            width: 45%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+    }
