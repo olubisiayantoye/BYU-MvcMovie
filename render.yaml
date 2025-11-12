@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: mvc-movie
+    env: dotnet
+    buildCommand: "cd MvcMovie && dotnet restore && dotnet build --configuration Release"
+    startCommand: "cd MvcMovie && dotnet run --configuration Release --urls=http://0.0.0.0:10000"
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        value: "Data Source=MvcMovie.db"
