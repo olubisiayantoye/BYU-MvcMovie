@@ -3,10 +3,10 @@ services:
     name: BYU-MvcMovie
     env: dotnet
     plan: free
-    rootDir: MvcMovie # change if your .csproj is in a different folder
+    rootDir: .
     buildCommand: "dotnet restore && dotnet build --configuration Release"
-    startCommand: "dotnet run --configuration Release --urls=http://0.0.0.0:10000"
     preDeployCommand: "dotnet ef database update"
+    startCommand: "dotnet run --configuration Release --urls=http://0.0.0.0:10000"
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
